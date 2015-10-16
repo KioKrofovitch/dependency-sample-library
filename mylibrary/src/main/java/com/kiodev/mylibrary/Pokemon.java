@@ -7,6 +7,8 @@ public class Pokemon {
     private String mName;
     private String mType;
 
+    private Integer mNumber;
+
     public Pokemon() { }
 
     public Pokemon(String name, String type){
@@ -30,4 +32,11 @@ public class Pokemon {
         mType = type;
     }
 
+    public Integer getNumber(){
+        return mNumber;
+    }
+
+    public void setNumber(Integer number){
+        mNumber = number;
+    }
 }
