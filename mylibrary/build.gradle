@@ -3,7 +3,12 @@ apply plugin: 'com.jfrog.artifactory'
 apply plugin: 'maven-publish'
 
 def packageName = 'com.kiodev.myArtLibrary'
-def libraryVersion = '1.0.0'
+
+def versionMajor = '1'
+def versionMinor = '0'
+def versionPatch = '1'
+
+def libraryVersion = "${versionMajor}.${versionMinor}.${versionPatch}"
 
 android {
     compileSdkVersion 23
@@ -44,13 +49,25 @@ publishing {
 
 artifactory {
     contextUrl = 'http://localhost:8081/artifactory'
+
+    def repoName = ""
+    if (project.version.endsWith('-SNAPSHOT')) {
+        repoName = 'libs-snapshot-local'
+    } else {
+        repoName = 'libs-release-local'
+    }
+
     publish {
         repository {
             // The Artifactory repository key to publish to
-            repoKey = 'libs-release-local'
+            repoKey = repoName
 
             username = "admin"
             password = "password"
+
+            // For more sophistication, use gradle.properties
+            // username = artifactory_user
+            // password = artifactory_password
         }
         defaults {
             // Tell the Artifactory Plugin which artifacts should be published to Artifactory.
