@@ -6,6 +6,7 @@ package com.kiodev.mylibrary;
 public class Pokemon {
     private String mName;
     private String mType;
+    private int mNumber;
 
     public Pokemon() { }
 
@@ -28,6 +29,10 @@ public class Pokemon {
 
     public void setType(String type){
         mType = type;
+    }
+
+    public void setNumber(int number) {
+        mNumber = number;
     }
 
 }
